@@ -1,3 +1,0 @@
-[submodule "libs/cores"]
-	path = libs/cores
-	url = https://github.com/PaulStoffregen/cores.git
