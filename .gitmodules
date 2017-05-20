@@ -1,3 +1,6 @@
 [submodule "libs/cores"]
 	path = libs/cores
 	url = https://github.com/XMrVertigoX/cores.git
+[submodule "libs/xXx"]
+	path = libs/xXx
+	url = git@github.com:XMrVertigoX/xXx_CPP

@@ -44,7 +44,7 @@ LDFLAGS += -T $(LINKER_SCRIPT)
 
 # ----- Rules -----------------------------------------------------------------
 
-include ../libs/xXx_CPP/utils/rules.mk
+include ../libs/xXx/utils/rules.mk
 
 flash: $(HEXARY)
 	./teensy_loader_cli.exe --mcu=MK66FX1M0 -w -v $<
