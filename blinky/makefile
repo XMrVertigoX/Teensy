@@ -46,5 +46,8 @@ LDFLAGS += -T $(LINKER_SCRIPT)
 
 include ../libs/xXx/utils/rules.mk
 
-flash: $(HEXARY)
-	./teensy_loader_cli.exe --mcu=MK66FX1M0 -w -v $<
+flash: $(HEXARY) teensy_loader_cli
+	../libs/teensy_loader_cli/teensy_loader_cli --mcu=MK66FX1M0 -w -v $<
+
+teensy_loader_cli:
+	cd ../libs/teensy_loader_cli && make
