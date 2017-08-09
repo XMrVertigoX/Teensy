@@ -5,8 +5,6 @@ PROJECT_NAME     = blinky2
 
 SDK_ROOT = ../libs/SDK_2.2_MK66FX1M0xxx18
 
-LINKER_SCRIPT = MK66FX1M0xxx18_flash.ld
-
 # ----- Sources ---------------------------------------------------------------
 
 SYMBOLS += CPU_MK66FX1M0VMD18
@@ -22,13 +20,10 @@ SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/system_MK66F18.c
 SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/gcc/startup_MK66F18.S
 
 SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_gpio.c
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_clock.c
 
 INCLUDE_DIRS += ./src/config
 SOURCE_FILES += $(shell find ./src -iregex ".*\.\(cpp\)")
-
-# ----- Libraries -------------------------------------------------------------
-
-LIBRARY_DIRS += $(SDK_ROOT)/devices/MK66F18/gcc
 
 # ----- Flags -----------------------------------------------------------------
 
@@ -43,9 +38,9 @@ CFLAGS += -std=gnu11
 
 CXXFLAGS += -std=gnu++14
 
-CPPFLAGS +=
+#CPPFLAGS +=
 
-LDFLAGS += -T $(LINKER_SCRIPT)
+LDFLAGS += -T$(SDK_ROOT)/devices/MK66F18/gcc/MK66FX1M0xxx18_flash.ld
 
 # ----- Rules -----------------------------------------------------------------
 
