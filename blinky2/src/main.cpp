@@ -1,12 +1,6 @@
-#include "WProgram.h"
+#include <fsl_gpio.h>
 
-extern "C" int main(void) {
-    pinMode(13, OUTPUT);
-
-    while (1) {
-        digitalWriteFast(13, HIGH);
-        delay(500);
-        digitalWriteFast(13, LOW);
-        delay(500);
+extern "C" int main() {
+    for (;;) {
     }
 }

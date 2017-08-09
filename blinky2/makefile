@@ -1,38 +1,43 @@
 # ----- Configuration ---------------------------------------------------------
 
 TOOLCHAIN_PREFIX = arm-none-eabi-
-PROJECT_NAME     = cores
+PROJECT_NAME     = blinky2
 
-LINKER_SCRIPT = mk66fx1m0.ld
+SDK_ROOT = ../libs/SDK_2.2_MK66FX1M0xxx18
+
+LINKER_SCRIPT = MK66FX1M0xxx18_flash.ld
 
 # ----- Sources ---------------------------------------------------------------
 
-SYMBOLS += __MK66FX1M0__
-SYMBOLS += USB_SERIAL
-SYMBOLS += F_CPU=180000000
-SYMBOLS += LAYOUT_US_ENGLISH
+SYMBOLS += CPU_MK66FX1M0VMD18
 
-INCLUDE_DIRS += ../libs/cores/teensy3
-INCLUDE_DIRS += ../libs/cores/teensy3/avr
-INCLUDE_DIRS += ../libs/cores/teensy3/util
-SOURCE_FILES += $(shell find ../libs/cores/teensy3 -iregex ".*\.\(c\|cpp\|s\|S\)")
+INCLUDE_DIRS += $(SDK_ROOT)/CMSIS/Include
+INCLUDE_DIRS += $(SDK_ROOT)/CMSIS/Driver/Include
+INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18
+INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18/cmsis_drivers
+INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18/drivers
+INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18/utilities
+
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/system_MK66F18.c
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/gcc/startup_MK66F18.S
+
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_gpio.c
 
 INCLUDE_DIRS += ./src/config
-SOURCE_FILES += $(shell find ./src -iregex ".*\.\(c\|cpp\|s\|S\)")
+SOURCE_FILES += $(shell find ./src -iregex ".*\.\(cpp\)")
 
 # ----- Libraries -------------------------------------------------------------
 
-LIBRARY_DIRS += ../libs/cores/teensy3
+LIBRARY_DIRS += $(SDK_ROOT)/devices/MK66F18/gcc
 
 # ----- Flags -----------------------------------------------------------------
 
 GCCFLAGS += -mcpu=cortex-m4
 GCCFLAGS += -mthumb
-GCCFLAGS += -mfloat-abi=hard
-GCCFLAGS += -mfpu=fpv4-sp-d16
+# GCCFLAGS += -mfloat-abi=hard
+# GCCFLAGS += -mfpu=fpv4-sp-d16
 
-COMMON_CFLAGS += -g
-COMMON_CFLAGS += -Og
+COMMON_CFLAGS += -O3
 
 CFLAGS += -std=gnu11
 
