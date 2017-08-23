@@ -3,8 +3,12 @@
 
 namespace board {
 
+namespace led {
+
 void init();
-void initLed();
+void toggle();
+
+} /* namespace led */
 
 } /* namespace board */
 

@@ -1,53 +1,53 @@
 # ----- Configuration ---------------------------------------------------------
 
 TOOLCHAIN_PREFIX = arm-none-eabi-
-PROJECT_NAME     = blinky2
 
-SDK_ROOT = ../libs/SDK_2.2_MK66FX1M0xxx18
+LIBS_DIR = ../libs
+SDK_ROOT = $(LIBS_DIR)/SDK_2.2_MK66FX1M0xxx18
 
 # ----- Sources ---------------------------------------------------------------
 
 SYMBOLS += CPU_MK66FX1M0VMD18
 
-INCLUDE_DIRS += $(SDK_ROOT)/CMSIS/Include
 INCLUDE_DIRS += $(SDK_ROOT)/CMSIS/Driver/Include
+INCLUDE_DIRS += $(SDK_ROOT)/CMSIS/Include
 INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18
 INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18/cmsis_drivers
 INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18/drivers
-INCLUDE_DIRS += $(SDK_ROOT)/devices/MK66F18/utilities
 
-SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/system_MK66F18.c
-SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/gcc/startup_MK66F18.S
-
-SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_gpio.c
 SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_clock.c
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_gpio.c
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/gcc/startup_MK66F18.S
+SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/system_MK66F18.c
 
-INCLUDE_DIRS += ./src/config
-SOURCE_FILES += $(shell find ./src -iregex ".*\.\(cpp\)")
+SOURCE_FILES += $(shell find ./src -iregex ".*\.\(c\|cpp\)")
 
 # ----- Flags -----------------------------------------------------------------
 
 GCCFLAGS += -mcpu=cortex-m4
 GCCFLAGS += -mthumb
-# GCCFLAGS += -mfloat-abi=hard
-# GCCFLAGS += -mfpu=fpv4-sp-d16
+GCCFLAGS += -mfloat-abi=hard
+GCCFLAGS += -mfpu=fpv4-sp-d16
 
-COMMON_CFLAGS += -O3
+# COMMON_CFLAGS += -O3
+# COMMON_CFLAGS += -flto
 
 CFLAGS += -std=gnu11
 
 CXXFLAGS += -std=gnu++14
 
-#CPPFLAGS +=
+CPPFLAGS +=
 
 LDFLAGS += -T$(SDK_ROOT)/devices/MK66F18/gcc/MK66FX1M0xxx18_flash.ld
+LDFLAGS += --specs=nano.specs
+LDFLAGS += --specs=nosys.specs
 
 # ----- Rules -----------------------------------------------------------------
 
-include ../libs/xXx/utils/rules.mk
+include $(LIBS_DIR)/xXx/utils/rules.mk
 
-flash: $(HEXARY) teensy_loader_cli
-	../libs/teensy_loader_cli/teensy_loader_cli --mcu=MK66FX1M0 -w -v $<
+flash: $(HEX_FILE) | teensy_loader_cli
+	$(LIBS_DIR)/teensy_loader_cli/teensy_loader_cli --mcu=MK66FX1M0 -w -v $<
 
 teensy_loader_cli:
-	cd ../libs/teensy_loader_cli && make
+	cd $(LIBS_DIR)/teensy_loader_cli && make
