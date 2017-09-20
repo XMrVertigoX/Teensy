@@ -4,6 +4,3 @@
 [submodule "libs/teensy_loader_cli"]
 	path = libs/teensy_loader_cli
 	url = https://github.com/PaulStoffregen/teensy_loader_cli.git
-[submodule "libs/cores"]
-	path = libs/cores
-	url = https://github.com/PaulStoffregen/cores.git
