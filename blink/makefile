@@ -1,10 +1,10 @@
 # ----- Configuration ---------------------------------------------------------
 
-TOOLCHAIN_PREFIX = arm-none-eabi-
-PROJECT_NAME     = $(notdir $(PWD))
+PROJECT_NAME = $(notdir $(PWD))
 
-LIBS_DIR = ../libs
-SDK_ROOT = $(LIBS_DIR)/SDK_2.2_MK66FX1M0xxx18
+TOOLCHAIN_PREFIX = arm-none-eabi-
+LIBS_DIR         = ../libs
+SDK_ROOT         = $(LIBS_DIR)/SDK_2.2_MK66FX1M0xxx18
 
 # ----- Sources ---------------------------------------------------------------
 
@@ -30,14 +30,13 @@ GCCFLAGS += -mthumb
 GCCFLAGS += -mfloat-abi=hard
 GCCFLAGS += -mfpu=fpv4-sp-d16
 
-COMMON_CFLAGS += -O3
-COMMON_CFLAGS += -flto
-
 CFLAGS += -std=gnu11
+CFLAGS += -flto
+CFLAGS += -O3
 
 CXXFLAGS += -std=gnu++14
-
-CPPFLAGS +=
+CXXFLAGS += -flto
+CXXFLAGS += -O3
 
 LDFLAGS += -T$(SDK_ROOT)/devices/MK66F18/gcc/MK66FX1M0xxx18_flash.ld
 LDFLAGS += --specs=nano.specs
