@@ -1,6 +1,7 @@
 # ----- Configuration ---------------------------------------------------------
 
 TOOLCHAIN_PREFIX = arm-none-eabi-
+PROJECT_NAME     = $(notdir $(PWD))
 
 LIBS_DIR = ../libs
 SDK_ROOT = $(LIBS_DIR)/SDK_2.2_MK66FX1M0xxx18
@@ -29,8 +30,8 @@ GCCFLAGS += -mthumb
 GCCFLAGS += -mfloat-abi=hard
 GCCFLAGS += -mfpu=fpv4-sp-d16
 
-# COMMON_CFLAGS += -O3
-# COMMON_CFLAGS += -flto
+COMMON_CFLAGS += -O3
+COMMON_CFLAGS += -flto
 
 CFLAGS += -std=gnu11
 
@@ -46,7 +47,7 @@ LDFLAGS += --specs=nosys.specs
 
 include $(LIBS_DIR)/xXx/utils/rules.mk
 
-flash: $(HEX_FILE) | teensy_loader_cli
+flash: $(PROJECT_NAME).hex | teensy_loader_cli
 	$(LIBS_DIR)/teensy_loader_cli/teensy_loader_cli --mcu=MK66FX1M0 -w -v $<
 
 teensy_loader_cli:
