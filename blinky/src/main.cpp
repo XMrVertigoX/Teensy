@@ -1,12 +1,18 @@
-#include "WProgram.h"
+#include <cstddef>
 
-extern "C" int main(void) {
-    pinMode(13, OUTPUT);
+#include "board.hpp"
 
-    while (1) {
-        digitalWriteFast(13, HIGH);
-        delay(500);
-        digitalWriteFast(13, LOW);
-        delay(500);
+#define INFINITE_LOOP while (true)
+
+extern "C" int main() {
+    board::led::init();
+
+    INFINITE_LOOP {
+        board::led::toggle();
+
+        // Pseudo delay
+        for (size_t i = 0; i < 1000000; i++) {
+            asm("nop");
+        }
     }
 }
