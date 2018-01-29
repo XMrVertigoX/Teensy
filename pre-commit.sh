@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git diff --name-only > test.txt
+git status > test.txt
