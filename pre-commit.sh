@@ -1,3 +1,3 @@
-#!/ bin / bash
+#!/bin/bash
 
-git diff-- name - only | xargs clang - format - i
+git diff --name-only | grep -e '^.*[\.c|\.cpp]$' | xargs clang-format -i
