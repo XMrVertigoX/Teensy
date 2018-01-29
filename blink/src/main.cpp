@@ -10,12 +10,20 @@ extern "C" int main() {
     INFINITE_LOOP {
         board::led::toggle();
 
+
+
+
         // Pseudo delay
         for (size_t i = 0; i < 1000000; i++) {
             asm("nop");
         }
     }
 }
+
+
+
+
+
 
 
 
