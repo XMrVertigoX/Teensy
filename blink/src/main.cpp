@@ -7,14 +7,8 @@
 extern "C" int main() {
     board::led::init();
 
-
-
-
     INFINITE_LOOP {
         board::led::toggle();
-
-
-
 
         // Pseudo delay
         for (size_t i = 0; i < 1000000; i++) {
@@ -22,16 +16,3 @@ extern "C" int main() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
