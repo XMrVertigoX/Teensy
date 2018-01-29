@@ -15,6 +15,10 @@ void board::led::init() {
     GPIO_PinInit(ledGpio, ledPin, &ledConfig);
 }
 
+
+
+
+
 void board::led::toggle() {
     GPIO_TogglePinsOutput(ledGpio, (1 << ledPin));
 }

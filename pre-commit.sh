@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git diff --name-only | grep -e '^.*[\.c|\.cpp]$' | xargs clang-format -i
+git status --short | grep -Po '(?<=[ M?]{3}).*[\.c|\.cpp]$' | xargs clang-format -i
