@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/ bin / bash
 
-git status > test.txt
+git diff-- name - only | xargs clang - format - i
