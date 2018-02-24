@@ -21,7 +21,7 @@ SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/drivers/fsl_gpio.c
 SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/gcc/startup_MK66F18.S
 SOURCE_FILES += $(SDK_ROOT)/devices/MK66F18/system_MK66F18.c
 
-SOURCE_FILES += $(shell find ./src -iregex ".*\.\(c\|cpp\)")
+SOURCE_FILES += $(shell find src | grep -E '^.*\.(c|cpp)$$')
 
 # ----- Flags -----------------------------------------------------------------
 
