@@ -18,5 +18,3 @@ void board::led::init() {
 void board::led::toggle() {
     GPIO_TogglePinsOutput(ledGpio, (1 << ledPin));
 }
-
-
