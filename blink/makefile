@@ -46,8 +46,5 @@ LDFLAGS += --specs=nosys.specs
 
 include $(LIBS_DIR)/xXx/utils/rules.mk
 
-flash: $(PROJECT_NAME).hex | teensy_loader_cli
-	$(LIBS_DIR)/teensy_loader_cli/teensy_loader_cli --mcu=MK66FX1M0 -w -v $<
-
-teensy_loader_cli:
-	cd $(LIBS_DIR)/teensy_loader_cli && make
+download: $(PROJECT_NAME).hex
+	teensy_loader_cli --mcu=MK66FX1M0 -w -v $<
