@@ -1,7 +1,5 @@
 # ----- Configuration ---------------------------------------------------------
 
-PROJECT_NAME = $(notdir $(PWD))
-
 TOOLCHAIN_PREFIX = arm-none-eabi-
 LIBS_DIR         = ../libs
 SDK_ROOT         = $(LIBS_DIR)/SDK_2.2_MK66FX1M0xxx18
